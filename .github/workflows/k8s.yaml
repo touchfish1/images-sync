@@ -37,7 +37,7 @@ jobs:
               - old: ingress-nginx/
                 new: chengccn/ingress-
             filters:
-              -^[Vv]?$              
+              - ^[Vv]?\d+?$         
           EOF
           registry-manager sync -c config.yaml
       - name: Delete workflow runs
