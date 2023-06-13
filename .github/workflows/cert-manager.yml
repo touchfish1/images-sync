@@ -36,7 +36,7 @@ jobs:
           dry-run: false
           replace:
             - old: jetstack/
-              new: it00021hot/jetstack_
+              new: chengccn/jetstack_
           filters:
             - ^[Vv]?\d+\.\d+(\.\d+)?(-\d+)?$
         EOF
