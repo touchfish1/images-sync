@@ -30,7 +30,7 @@ jobs:
               - ingress-nginx/controller
               - ingress-nginx/kube-webhook-certgen
           sync-policy:
-            from: gcr
+            from: k8s
             to: aliyuncs
             dry-run: false
             replace:
