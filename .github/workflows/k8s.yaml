@@ -9,7 +9,7 @@ on:
     branches: [ main ]
 
 jobs:
-  sync-quay:
+  sync-k8s:
     runs-on: ubuntu-20.04
     container: setzero/registry-manager
     env:
@@ -24,12 +24,11 @@ jobs:
               registry: https://registry.aliyuncs.com
               username: $TO_USERNAME
               password: $TO_PASSWORD
-            gcr:
-              registry: https://k8s.gcr.io
+            k8s:
+              registry: https://registry.k8s.io
               repositories:
-              - ingress-nginx/kube-webhook-certgen
               - ingress-nginx/controller
-              - kaniko-project/executor
+              - ingress-nginx/kube-webhook-certgen
           sync-policy:
             from: gcr
             to: aliyuncs
@@ -37,43 +36,6 @@ jobs:
             replace:
               - old: ingress-nginx/
                 new: chengccn/ingress-
-              - old: kaniko-project/
-                new: chengccn/kaniko-
-            filters:
-              - ^[Vv]?$
-          EOF
-          registry-manager sync -c config.yaml
-      - name: Delete workflow runs
-        uses: GitRML/delete-workflow-runs@main
-        with:
-          retain_days: 7
-          keep_minimum_runs: 3
-  sync-kaniko:
-    runs-on: ubuntu-20.04
-    container: setzero/registry-manager
-    env:
-      TO_USERNAME: ${{ secrets.TO_USERNAME }}
-      TO_PASSWORD: ${{ secrets.TO_PASSWORD }}
-    steps:
-      - name: kaniko to Aliyun
-        run: |
-          cat << EOF >config.yaml
-          registries:
-            aliyuncs:
-              registry: https://registry.aliyuncs.com
-              username: $TO_USERNAME
-              password: $TO_PASSWORD
-            gcr:
-              registry: https://gcr.io
-              repositories:
-              - kaniko-project/executor
-          sync-policy:
-            from: gcr
-            to: aliyuncs
-            dry-run: false
-            replace:
-              - old: kaniko-project/
-                new: chengccn/kaniko-
             filters:
               -^[Vv]?$              
           EOF
