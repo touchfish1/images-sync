@@ -36,15 +36,13 @@ jobs:
             dry-run: false
             replace:
               - old: ingress-nginx/
-                new: chengccn/
+                new: chengccn/ingress-
               - old: kaniko-project/
                 new: chengccn/kaniko-
             filters:
               - ^[Vv]?\d+\.\d+(\.\d+)?(-\d+)?$
           EOF
           registry-manager sync -c config.yaml
-          echo "cat congfig.yaml"
-          cat config.yaml
       - name: Delete workflow runs
         uses: GitRML/delete-workflow-runs@main
         with:
