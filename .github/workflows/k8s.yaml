@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-20.04
     container: setzero/registry-manager
     env:
-      TO_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-      TO_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+      TO_USERNAME: ${{ secrets.TO_USERNAME }}
+      TO_PASSWORD: ${{ secrets.TO_PASSWORD }}
     steps:
       - name: k8s to Aliyun
         run: |
