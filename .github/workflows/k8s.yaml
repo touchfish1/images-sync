@@ -36,9 +36,9 @@ jobs:
             dry-run: false
             replace:
               - old: ingress-nginx/
-                new: k8s-lzh/
+                new: chengccn/ingress-nginx
               - old: kaniko-project/
-                new: chengccn/kaniko-
+                new: chengccn/kaniko-project
             filters:
               - ^[Vv]?\d+\.\d+(\.\d+)?(-\d+)?$
           EOF
@@ -73,7 +73,7 @@ jobs:
             dry-run: false
             replace:
               - old: kaniko-project/
-                new: chengccn/kaniko-
+                new: chengccn/kaniko-project
             filters:
               - ^[Vv]?\d+\.\d+(\.\d+)?(-\d+)?$               
           EOF
