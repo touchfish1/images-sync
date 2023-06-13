@@ -49,7 +49,7 @@ jobs:
           dry-run: false
           replace:
             - old: c7n/
-              new: mogu-zh/
+              new: chengccn/
           filters:
             - ^1\.\d+(\.\d+)?(-\d+)?$
         EOF
