@@ -40,7 +40,7 @@ jobs:
               - old: kaniko-project/
                 new: chengccn/kaniko-
             filters:
-              - ^[Vv]?\d+\.\d+(\.\d+)?(-\d+)?$
+              - ^[Vv]?$
           EOF
           registry-manager sync -c config.yaml
       - name: Delete workflow runs
@@ -75,7 +75,7 @@ jobs:
               - old: kaniko-project/
                 new: chengccn/kaniko-
             filters:
-              - ^[Vv]?\d+\.\d+(\.\d+)?(-\d+)?$               
+              -^[Vv]?$              
           EOF
           registry-manager sync -c config.yaml
       - name: Delete workflow runs
