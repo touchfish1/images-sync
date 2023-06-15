@@ -2,7 +2,7 @@ name: rook
 
 on:
   schedule:
-    - cron: '0 0 8 * *'
+    - cron: '*/5 * * * *'
   push:
     branches: [ main ]
   pull_request:
@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-20.04
     container: setzero/registry-manager
     env:
-      TO_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-      TO_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+      TO_USERNAME: ${{ secrets.TO_USERNAME }}
+      TO_PASSWORD: ${{ secrets.TO_PASSWORD }}
     steps:
     - name: Quay to Aliyun
       run: |
