@@ -14,7 +14,7 @@ jobs:
     container: setzero/registry-manager
     env:
       TO_USERNAME: ${{ secrets.TO_USERNAME }}
-      TO_PASSWORD: ${{ secrets.TO_USERNAME }}
+      TO_PASSWORD: ${{ secrets.TO_PASSWORD }}
     steps:
     - name: Quay to Aliyun
       run: |
