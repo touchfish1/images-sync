@@ -9,14 +9,14 @@ on:
     branches: [ main ]
 
 jobs:
-  sync-k8s:
+  sync-bitnami:
     runs-on: ubuntu-20.04
     container: setzero/registry-manager
     env:
       TO_USERNAME: ${{ secrets.TO_USERNAME }}
       TO_PASSWORD: ${{ secrets.TO_PASSWORD }}
     steps:
-      - name: k8s to Aliyun
+      - name: bitnami to Aliyun
         run: |
           cat << EOF >config.yaml
           registries:
@@ -24,19 +24,19 @@ jobs:
               registry: https://registry.aliyuncs.com
               username: $TO_USERNAME
               password: $TO_PASSWORD
-            k8s:
+            bitnami:
               registry: https://docker.io
               repositories:
               - bitnami/mysql
           sync-policy:
-            from: k8s
+            from: bitnami
             to: aliyuncs
             dry-run: false
             replace:
               - old: bitnami/
                 new: chengccn/
             filters:
-              - ^[8]?\d+?$         
+              - ^[8]?\?$        
           EOF
           registry-manager sync -c config.yaml
       - name: Delete workflow runs
