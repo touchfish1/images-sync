@@ -27,7 +27,6 @@ jobs:
             bitnami:
               registry: https://docker.io
               repositories:
-              - bitnami/mysql
               - bitnami/redis-cluster
               - bitnami/reids
           sync-policy:
