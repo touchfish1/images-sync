@@ -1,4 +1,4 @@
-name: k8s
+name: bitnami
 
 on:
 #   schedule:
