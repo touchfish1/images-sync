@@ -29,13 +29,17 @@ jobs:
               repositories:
               - bitnami/redis-cluster
               - bitnami/reids
+              - bitnami/bitnami-shell
+              - bitnami/redis-exporter
           sync-policy:
             from: bitnami
             to: aliyuncs
             dry-run: false
             replace:
               - old: bitnami/
-                new: chengccn/   
+                new: chengccn/  
+            filters:
+              - ^[7/11]\w+$
           EOF
           registry-manager sync -c config.yaml
       - name: Delete workflow runs
