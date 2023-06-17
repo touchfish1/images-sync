@@ -35,8 +35,6 @@ jobs:
             replace:
               - old: nacos/
                 new: chengccn/   
-            filters:
-              - 8.0.33  
           EOF
           registry-manager sync -c config.yaml
       - name: Delete workflow runs
