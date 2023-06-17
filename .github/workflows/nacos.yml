@@ -1,0 +1,46 @@
+name: nacos
+
+on:
+#   schedule:
+#     - cron: '5 * * * *'
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  sync-nacos:
+    runs-on: ubuntu-20.04
+    container: setzero/registry-manager
+    env:
+      TO_USERNAME: ${{ secrets.TO_USERNAME }}
+      TO_PASSWORD: ${{ secrets.TO_PASSWORD }}
+    steps:
+      - name: bitnami to Aliyun
+        run: |
+          cat << EOF >config.yaml
+          registries:
+            aliyuncs:
+              registry: https://registry.aliyuncs.com
+              username: $TO_USERNAME
+              password: $TO_PASSWORD
+            nacos:
+              registry: https://docker.io
+              repositories:
+              - nacos/nacos-peer-finder-plugin
+          sync-policy:
+            from: nacos
+            to: aliyuncs
+            dry-run: false
+            replace:
+              - old: nacos/
+                new: chengccn/   
+            filters:
+              - 8.0.33  
+          EOF
+          registry-manager sync -c config.yaml
+      - name: Delete workflow runs
+        uses: GitRML/delete-workflow-runs@main
+        with:
+          retain_days: 7
+          keep_minimum_runs: 3
