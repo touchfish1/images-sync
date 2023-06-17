@@ -1,0 +1,46 @@
+name: k8s
+
+on:
+#   schedule:
+#     - cron: '5 * * * *'
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  sync-k8s:
+    runs-on: ubuntu-20.04
+    container: setzero/registry-manager
+    env:
+      TO_USERNAME: ${{ secrets.TO_USERNAME }}
+      TO_PASSWORD: ${{ secrets.TO_PASSWORD }}
+    steps:
+      - name: k8s to Aliyun
+        run: |
+          cat << EOF >config.yaml
+          registries:
+            aliyuncs:
+              registry: https://registry.aliyuncs.com
+              username: $TO_USERNAME
+              password: $TO_PASSWORD
+            k8s:
+              registry: https://docker.io
+              repositories:
+              - bitnami/mysql
+          sync-policy:
+            from: k8s
+            to: aliyuncs
+            dry-run: false
+            replace:
+              - old: bitnami/
+                new: chengccn/
+            filters:
+              - ^[8]?\d+?$         
+          EOF
+          registry-manager sync -c config.yaml
+      - name: Delete workflow runs
+        uses: GitRML/delete-workflow-runs@main
+        with:
+          retain_days: 7
+          keep_minimum_runs: 3
