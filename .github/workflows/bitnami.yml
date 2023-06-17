@@ -28,7 +28,6 @@ jobs:
               registry: https://docker.io
               repositories:
               - bitnami/redis-cluster
-              - bitnami/reids
               - bitnami/bitnami-shell
               - bitnami/redis-exporter
               - bitnami/elasticsearch
