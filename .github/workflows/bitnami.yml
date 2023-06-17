@@ -39,7 +39,7 @@ jobs:
               - old: bitnami/
                 new: chengccn/  
             filters:
-              - ^[7/11]\w+$
+              - 1.50.0-debian-11-r13
           EOF
           registry-manager sync -c config.yaml
       - name: Delete workflow runs
