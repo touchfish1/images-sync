@@ -28,6 +28,7 @@ jobs:
               registry: https://docker.io
               repositories:
               - nacos/nacos-peer-finder-plugin
+              - nacos/nacos-server
           sync-policy:
             from: nacos
             to: aliyuncs
