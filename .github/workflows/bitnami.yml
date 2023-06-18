@@ -45,7 +45,7 @@ jobs:
               - 1.5.0-debian-11-r106
               - 8.8.1-debian-11-r0
               - 11-debian-11-r123
-              - 2.401.1-debian-11-r0
+              - 2.401.1-debian-11-r0 
           EOF
           registry-manager sync -c config.yaml
       - name: Delete workflow runs
