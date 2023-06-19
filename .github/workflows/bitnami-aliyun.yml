@@ -27,7 +27,7 @@ jobs:
             bitnami:
               registry: https://docker.io
               repositories:
-              - bitnami
+              
           sync-policy:
             from: bitnami
             to: aliyuncs
