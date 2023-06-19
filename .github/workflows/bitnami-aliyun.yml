@@ -26,7 +26,6 @@ jobs:
               password: $TO_PASSWORD
             bitnami:
               registry: https://docker.io
-              repositories:
           sync-policy:
             from: bitnami
             to: aliyuncs
