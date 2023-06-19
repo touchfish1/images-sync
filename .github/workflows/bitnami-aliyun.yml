@@ -31,8 +31,8 @@ jobs:
             to: aliyuncs
             dry-run: false
             replace:
-              - old: bitnami/
-                new: chengccn_bitnami/ 
+              - old: bitnami
+                new: chengccn_bitnami
           EOF
           registry-manager sync -c config.yaml
       - name: Delete workflow runs
