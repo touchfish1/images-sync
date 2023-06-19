@@ -1,4 +1,4 @@
-name: bitnami
+name: bitnami-aliyun
 
 on:
 #   schedule:
@@ -26,14 +26,14 @@ jobs:
               password: $TO_PASSWORD
             bitnami:
               registry: https://docker.io
-              repositories: 
+              repositories:
           sync-policy:
             from: bitnami
             to: aliyuncs
             dry-run: false
             replace:
-              - old: bitnami
-                new: chengccn_bitnami
+              - old: bitnami/
+                new: chengccn_bitnami/ 
           EOF
           registry-manager sync -c config.yaml
       - name: Delete workflow runs
