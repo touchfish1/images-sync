@@ -3,10 +3,10 @@ name: bitnami
 on:
 #   schedule:
 #     - cron: '5 * * * *'
-#   push:
-#     branches: [ main ]
-#   pull_request:
-#     branches: [ main ]
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   sync-bitnami:
@@ -27,13 +27,7 @@ jobs:
             bitnami:
               registry: https://docker.io
               repositories:
-              - bitnami/redis-cluster
-              - bitnami/bitnami-shell
-              - bitnami/redis-exporter
-              - bitnami/elasticsearch
-              - bitnami/elasticsearch-exporter
-              - bitnami/bitnami-shell
-              - bitnami/jenkins
+              - bitnami/*
           sync-policy:
             from: bitnami
             to: aliyuncs
@@ -41,11 +35,6 @@ jobs:
             replace:
               - old: bitnami/
                 new: chengccn_bitnami/ 
-            filters:
-              - 1.5.0-debian-11-r106
-              - 8.8.1-debian-11-r0
-              - 11-debian-11-r123
-              - 2.401.1-debian-11-r0 
           EOF
           registry-manager sync -c config.yaml
       - name: Delete workflow runs
