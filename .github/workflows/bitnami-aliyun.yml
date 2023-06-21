@@ -36,7 +36,7 @@ jobs:
               - old: calico/
                 new: chengccn/ 
             filters:
-              - v3.25.0
+              - [v3.25.0]
           EOF
           registry-manager sync -c config.yaml
       - name: Delete workflow runs
