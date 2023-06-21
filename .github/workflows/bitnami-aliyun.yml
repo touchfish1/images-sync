@@ -35,6 +35,8 @@ jobs:
             replace:
               - old: bitnami/
                 new: chengccn_bitnami/ 
+            filters:
+              - v3.25.0
           EOF
           registry-manager sync -c config.yaml
       - name: Delete workflow runs
