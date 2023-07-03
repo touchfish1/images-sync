@@ -40,7 +40,7 @@ jobs:
             - old: jetstack/
               new: chengccn/
           filters:
-            - ^[Vv]?\d+\.\d+(\.\d+)?(-\d+)?$
+            - v1.11.0
         EOF
         registry-manager sync -c config.yaml
     - name: Delete workflow runs
