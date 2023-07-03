@@ -30,6 +30,8 @@ jobs:
             - jetstack/cert-manager-cainjector
             - jetstack/cert-manager-webhook
             - jetstack/cert-manager-controller
+            - jetstack/cert-manager-ctl
+            - jetstack/cert-manager-acmesolver
         sync-policy:
           from: quay
           to: aliyuncs
@@ -38,7 +40,7 @@ jobs:
             - old: jetstack/
               new: chengccn/jetstack_
           filters:
-            - lastest
+            - ^[Vv]?\d+\.\d+(\.\d+)?(-\d+)?$
         EOF
         registry-manager sync -c config.yaml
     - name: Delete workflow runs
